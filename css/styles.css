@@ -1,0 +1,51 @@
+body{
+
+}
+#header-nav{
+	height: 200px;
+	box-shadow: 2px solid black;
+}
+#title{
+	text-align: center;
+	font-family: 'Anton', sans-serif;
+	font-size: 50px;
+	margin-top: 60px;
+}
+#quote{
+	background-color: #FFA500;
+	margin-top:-20px;
+	padding-top:5px;	
+	font-family: 'Lobster', cursive;
+	height: 40px;
+	font-size: 1.3em;
+	border: 2px solid black;
+	text-align: center;
+}
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+.sub-genre{
+	height: 200px;width: 200px;
+	background-color: #222;
+	color: white;
+	padding-top: 75px;
+	font-size: 30px;
+	margin-top: 30px;
+	margin-left: 30px;
+	border-radius: 5px;
+	text-align: center;
+	font-family: 'Anton', sans-serif;
+	float: left;
+}
