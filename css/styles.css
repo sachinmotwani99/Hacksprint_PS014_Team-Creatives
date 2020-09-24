@@ -4,6 +4,9 @@ body{
 #header-nav{
 	height: 200px;
 	box-shadow: 2px solid black;
+	background: linear-gradient(90deg, rgba(109,232,11,1) 0%, rgba(250,255,0,0.9504844173997724) 51%, rgba(255,191,0,1) 100%);
+	background-position: center;
+	border:0;
 }
 #title{
 	text-align: center;
@@ -12,8 +15,10 @@ body{
 	margin-top: 60px;
 }
 #quote{
-	background-color: #FFA500;
+	background-color: #000;
+	color: white;
 	margin-top:-20px;
+	margin-bottom: 15px;
 	padding-top:5px;	
 	font-family: 'Lobster', cursive;
 	height: 40px;
@@ -25,7 +30,6 @@ div.scrollmenu {
   overflow: auto;
   white-space: nowrap;
 }
-
 div.scrollmenu a {
   display: inline-block;
   color: white;
@@ -37,15 +41,95 @@ div.scrollmenu a:hover {
   background-color: #777;
 }
 .sub-genre{
-	height: 200px;width: 200px;
-	background-color: #222;
-	color: white;
-	padding-top: 75px;
-	font-size: 30px;
-	margin-top: 30px;
-	margin-left: 30px;
-	border-radius: 5px;
-	text-align: center;
+	width: 100%;
+	height: 250px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	position: relative;
 	font-family: 'Anton', sans-serif;
-	float: left;
+	text-align: center;
+	border:2px solid black;
+	color: black;
+	font-size: 30px;
+	padding-top: 75px;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 0px;
+}
+.sub-genre span{
+	position: absolute;
+	right: 0;
+	bottom: 0px;
+	width: 100%;
+	background-color: #000;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bolder;
+	color: #fff;
+	opacity: 80%;
+}
+.sub-genre:hover {
+  box-shadow: 0 1px 5px 1px #cccccc;
+}
+#EDM{
+	background: url('../images/edm.jpg')no-repeat;
+	background-position: center;
+}
+#pop{
+	background: url('../images/pop.jpg')no-repeat;
+	background-position: center;
+}
+#hiphop{
+	background: url('../images/hip.jpg')no-repeat;
+	background-position: center;
+}
+#bolly{
+	background: url('../images/bolly.jpg')no-repeat;
+	background-position: center;
+}
+#rom{
+	background: url('../images/rom.jpg')no-repeat;
+	background-position: center;
+}#rock{
+	background: url('../images/rock.jpg')no-repeat;
+	background-position: center;
+}
+
+
+
+/*-------------------------------------------Media query----------------------------------------*/
+
+@media(min-width: 1200px){
+	
+}
+
+
+/*-----------------------------------------Medium devices----------------------------------------*/
+@media(min-width: 992px) and (max-width: 1199px){
+	
+}
+
+
+/*-----------------------------------------Small devices----------------------------------------*/
+@media(min-width: 768px) and (max-width: 991px){
+	#quote{
+		font-size: 0.9em;
+		padding-top: 7px;
+
+	}
+}
+
+
+/*-----------------------------------------X-small devices----------------------------------------*/
+@media(max-width: 767px){
+	#quote{
+		font-size: 0.9em;
+		padding-top: 7px;
+	}
+}
+
+
+/*-----------------------------------------XX small devices----------------------------------------*/
+@media (max-width: 492px){
+
 }
