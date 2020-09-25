@@ -1,5 +1,5 @@
 body{
-	height: 1000px;
+	background-color: : #E8E8E8
 }
 #header-nav{
 	height: 200px;
@@ -25,6 +25,13 @@ body{
 	font-size: 1.3em;
 	border: 2px solid black;
 	text-align: center;
+}
+.quot2{
+	font-family: 'Lobster', cursive;
+	font-weight: bolder;
+	font-size: 1.5em;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .main_header {
   width: 0vw;
@@ -171,7 +178,16 @@ div.scrollmenu a:hover {
 	background-position: center;
 }
 
+footer{
+	background-color: #303030;
+	height:100px;
+	color: white;
+}
+#link{
+	padding-top:40px;
+	font-family: 'Anton', sans-serif;
 
+}
 
 /*-------------------------------------------Media query----------------------------------------*/
 
