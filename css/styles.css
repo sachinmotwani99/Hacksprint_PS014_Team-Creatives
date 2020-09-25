@@ -1,10 +1,10 @@
 body{
-	background-color: : #E8E8E8
+	background: linear-gradient(to bottom, #000066 0%, #000000 100%);
 }
 #header-nav{
 	height: 200px;
 	box-shadow: 2px solid black;
-	background: linear-gradient(90deg, rgba(109,232,11,1) 0%, rgba(250,255,0,0.9504844173997724) 51%, rgba(255,191,0,1) 100%);
+    background: url('../images/top2.png')no-repeat;
 	background-position: center;
 	border:0;
 }
@@ -28,6 +28,7 @@ body{
 }
 .quot2{
 	font-family: 'Lobster', cursive;
+	color: white;
 	font-weight: bolder;
 	font-size: 1.5em;
 	margin-top: 10px;
@@ -154,28 +155,34 @@ div.scrollmenu a:hover {
 .sub-genre:hover {
   box-shadow: 0 1px 5px 1px #cccccc;
 }
-#EDM{
-	background: url('../images/edm.jpg')no-repeat;
+#love{
+	background: url('../images/rom.jpeg')no-repeat;
 	background-position: center;
+	background-size: 360px 300px;
 }
-#pop{
-	background: url('../images/pop.jpg')no-repeat;
-	background-position: center;
+#mot{
+	background: url('../images/mot.jpeg')no-repeat;
+	background-position: top;
+	background-size: 360px 190px;
 }
-#hiphop{
-	background: url('../images/hip.jpg')no-repeat;
+#calm{
+	background: url('../images/cal.jpeg')no-repeat;
 	background-position: center;
+	background-size: 360px 300px;
 }
-#bolly{
-	background: url('../images/bolly.jpg')no-repeat;
-	background-position: center;
+#party{
+	background: url('../images/par.jpeg')no-repeat;
+	background-position: left;
+	background-size: 360px 250px;
 }
-#rom{
-	background: url('../images/rom.jpg')no-repeat;
-	background-position: center;
-}#rock{
-	background: url('../images/rock.jpg')no-repeat;
-	background-position: center;
+#heartb{
+	background: url('../images/heab.jpeg')no-repeat;
+	background-position:left;
+	background-size: 360px 250px;
+}#higher{
+	background: url('../images/hgr.jpeg')no-repeat;
+	background-position: top;
+	background-size: 360px 240px;
 }
 
 footer{
