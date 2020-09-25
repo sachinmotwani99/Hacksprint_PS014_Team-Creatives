@@ -10,9 +10,12 @@ body{
 }
 #title{
 	text-align: center;
-	font-family: 'Anton', sans-serif;
-	font-size: 50px;
-	margin-top: 60px;
+	font-family: 'Courgette', cursive;
+	text-shadow: 3px 3px 4px black, 0 0 25px black, 0 0 5px black;
+	font-weight: bolder;
+	color: white;
+	font-size: 80px;
+	margin-top: 40px;
 }
 #quote{
 	background-color: #000;
@@ -153,7 +156,7 @@ div.scrollmenu a:hover {
 	opacity: 80%;
 }
 .sub-genre:hover {
-  box-shadow: 0 1px 5px 1px #cccccc;
+  box-shadow: 0 6px 6px 6px #fff;
 }
 #love{
 	background: url('../images/rom.jpeg')no-repeat;
@@ -193,8 +196,177 @@ footer{
 #link{
 	padding-top:40px;
 	font-family: 'Anton', sans-serif;
-
 }
+
+
+
+
+/*-------------------------------------------The mood section------------------------------------*/
+
+#mood-bar{
+	background: linear-gradient(to bottom right, #ffff00 0%, #ff6600 100%);
+}
+#quot{
+	background-color: #000;
+	color: white;
+	margin-top:-20px;
+	padding-top:5px;	
+	font-family: 'Lobster', cursive;
+	height: 40px;
+	font-size: 1.3em;
+	border: 2px solid black;
+	text-align: center;
+}
+.sub-mood{
+	width: 100%;
+	height: 50px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	position: relative;
+	font-family: 'Lobster', cursive;
+	text-align: center;
+	border:2px solid red;
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	padding-top: 1000px;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 0px;
+}
+.sub-mood span{
+	position: absolute;
+	right: 0;
+	width: 100%;
+	padding-top: 8px;
+	text-align: center;
+	font-size: 1em;
+	font-weight: bolder;
+}
+.sub-mood:hover {
+  box-shadow: 0 5px 6px 5px #fff;
+}
+#luv{
+	/*background: linear-gradient(to right, #ffff00 0%, #ff0000 100%);*/
+	background-color: black;
+	background-position: center;
+}
+#motivational{
+	/*background: linear-gradient(to top left, #ffff00 0%, #00ff00 100%);*/
+	background-color: black;
+	background-position: top;
+}
+#partayyy{
+	/*background: linear-gradient(to top right, #ff66cc 0%, #3333ff 100%);*/
+	background-color: black;
+	background-position: center;
+}
+#heart{
+	/*background: linear-gradient(to bottom left, #cc00ff 22%, #ff3300 107%);*/
+	background-color: black;
+	background-position: left;
+}
+#cam{
+	/*background: linear-gradient(to bottom left, #ffff00 0%, #ff00ff 100%);*/
+	background-color: black;
+	background-position:left;
+}#hground{
+	/*background: linear-gradient(to top left, #ffff00 0%, #66ffff 100%);*/
+	background-color: black;
+	background-position: top;
+}
+
+/*-------------------------------------------Song module----------------------------------------*/
+
+
+#song-module{
+	border:2px solid black;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 10px;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 15s;
+	animation-iteration-count: infinite;
+}
+#art{
+	margin-top: 15px;
+	border-radius: 10px;
+	height:150px;
+	width: 150px;
+	border:2px solid black;
+}
+#song-name{
+	margin-left: 170px;
+	margin-top: -150px;
+	height: 40px;
+	width: 50%;
+	padding-top: 7px;
+	padding-left: 15px;
+	font-family: 'Courgette', cursive;
+	font-size: 1.3em;
+	text-shadow: 1px 1px 1px black, 0 0 1px black, 0 0 1px black;
+	border-radius: 50px;
+	border:2px solid black;
+	float:left;
+}
+#artist{
+	margin-left: 170px;
+	margin-top: -105px;
+	height: 40px;
+	padding-top: 7px;
+	font-size: 1.3em;
+	text-shadow: 1px 1px 1px black, 0 0 1px black, 0 0 1px black;
+	padding-left: 15px;
+	font-family: 'Courgette', cursive;
+	width: 50%;
+	border-radius: 50px;
+	border:2px solid black;
+	float:left;
+}
+#audio-con{
+	margin-left: 170px;
+	margin-top: -65px;
+	height: 60px;
+	padding-top: 7px;
+	padding-left:0;
+	width: 50%;
+	border-radius: 10px;
+	float:left;
+}
+#select{
+	margin-top: 15px;
+	font-family: 'Courgette', cursive;
+	text-shadow: 1px 1px 1px black, 0 0 1px black, 0 0 1px black;
+	font-size: 1.5em;
+	margin-bottom: 5px;
+}
+#fdd{
+	margin-left: 170px;
+	margin-top: -100px;
+	height: 60px;
+	padding-top: 7px;
+	text-shadow: 1px 1px 1px black, 0 0 1px black, 0 0 1px black;
+	padding-left:0;
+	width: 50%;
+	border-radius: 50px;
+	border:2px solid black;
+	float:left;
+	outline: none;
+}
+#fdd:hover{
+	box-shadow: 0 4px 11px 5px white;
+}
+
+
+@keyframes example {
+  0%   {background: linear-gradient(to top right, #ff66cc 0%, #ff5050 100%);}
+  25%  {background: linear-gradient(to top left, #66ff33 0%, #ffff00 100%);}
+  50%  {background: linear-gradient(to top left, #ffff00 0%, #66ffff 100%);}
+  100% {background: linear-gradient(to top right, #ff33cc 0%, #66ccff 100%);}
+}
+
+
 
 /*-------------------------------------------Media query----------------------------------------*/
 
@@ -212,9 +384,15 @@ footer{
 /*-----------------------------------------Small devices----------------------------------------*/
 @media(min-width: 768px) and (max-width: 991px){
 	#quote{
-		font-size: 0.8em;
+		font-size: 0.5em;
 		padding-top: 7px;
-
+	}
+	#quot{
+		font-size: 0.5em;
+		padding-top: 7px;
+	}
+	#title{
+		font-size: 4em;
 	}
 }
 
@@ -222,8 +400,15 @@ footer{
 /*-----------------------------------------X-small devices----------------------------------------*/
 @media(max-width: 767px){
 	#quote{
-		font-size: 0.8em;
+		font-size: 0.5em;
 		padding-top: 7px;
+	}
+	#quot{
+		font-size: 0.5em;
+		padding-top: 7px;
+	}
+	#title{
+		font-size: 4em;
 	}
 }
 
@@ -231,7 +416,14 @@ footer{
 /*-----------------------------------------XX small devices----------------------------------------*/
 @media (max-width: 492px){
 	#quote{
+		font-size: 0.5em;
+		padding-top: 7px;
+	}
+	#quot{
 		font-size: 0.8em;
 		padding-top: 7px;
+	}
+	#title{
+		font-size: 4em;
 	}
 }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rhyme-Jhim</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<!------------------------------Header--------------------------------------------->
+
+	<header>
+		<nav id="header-nav" class="navbar navbar-default">
+			<div id="nav-pic">
+				<p id="title">Rhyme-Jhim</p>
+			</div>
+		</nav><!-- header nav -->
+	</header>
+
+
+	<!------------------------------Main section -------------------------------------->
+
+	<section id="mood-bar">
+		<div id="quot">
+			<p>“ One good thing about music, when it hits you, you feel no pain ” ― Bob Marley</p>
+		</div>
+		<div class="container" id="mood-row">
+			<div id="home-tiles" class="row">
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<a href="#">
+						<div id="luv" class="sub-mood">
+							<span>In-Love</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<a href="#">
+						<div id="motivational" class="sub-mood">
+							<span>Motivational</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<a href="#"> 
+						<div id="partayyy" class="sub-mood">
+							<span>Party</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<a href="#"> 
+						<div id="heart" class="sub-mood">
+							<span>Heartbreak</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<a href="#"> 
+						<div id="cam" class="sub-mood">
+							<span>Calm</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<a href="#"> 
+						<div id="hground" class="sub-mood">
+							<span>Higher Ground</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!--------------------------------------------------------------sachin song module------------------------------------->
+
+
+	<section>
+		<div class="container" id="song-module">
+			<div  id="art">
+				<img class='section-3-image' src='"+a2+"'>
+			</div>       
+			<div >
+				<div id="song-name">
+					<p id='nm'>"+x+"</p>
+				</div> 
+				<div class='sec-3-b-2' id="artist">"+a1+"</div>
+						
+				<audio controls src="+s3+" id="audio-con"> Your browser does not support the 
+					<code>audio</code> 
+						element.    
+				</audio>
+			</div>
+			<div id="select">
+				<div>Which mood do you think the song fits to?</div>
+				<input type='radio' name='feed' value=1 class="inp">
+				Calm 
+				<br>
+				<input type='radio' name='feed' value=2 class="inp">
+				High Going
+				<br> 
+				<input type='radio' name='feed' value=3 class="inp">
+				Love
+				<br> 
+				<input type='radio' name='feed' value=4>
+				Motivational
+				<br> 
+				<input type='radio' name='feed' value=5>
+				Party
+				<br>
+				<input type='radio' name='feed' value=6>
+				Sad
+				<button type='button' id='fdd' onclick='feedback("+t+")'>Submit</button><br><div id='result'></div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+	<!------------------------------Footer---------------------------------------------->
+
+
+	<footer>
+		<div>
+			<div id="quot2"></div>
+			<div class="text-center" id="link">&copy; Copyright Team_Creatives</div>
+		</div>
+	</footer>
+
+	<!----------------------------- jQuery (Bootstrap JS plugins depend on it) ------------------------------------>
+
+  	<script src="js/jquery-2.1.4.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+  	<script src="js/script.js"></script>
+</body>
+</html>
