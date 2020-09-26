@@ -10,6 +10,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style type="text/css">
+    	//=== Drawing effect
+
+@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+  box-shadow: inset 0 0 0 $width $color;
+  color: $color;
+  transition: color $duration $duration/3;
+  position: relative;
+  
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0; height: 0;
+    
+    #{$vertical}: 0; 
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+    
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+  
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+    
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+  
+  &:hover {
+    color: $hover;
+    
+    &::before,
+    &::after {
+      border-color: $hover;
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
+    }
+    
+    &::before { transition-delay: 0s, 0s, $duration; }
+    
+    &::after { transition-delay: 0s, $duration, 0s; }
+  }
+}
+
+.draw-border {
+  @include btn-border-drawing(#58afd1, #ffe593, 4px, bottom, right);
+}
+
+//=== Button styling, semi-ignore
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+  
+  &:focus { outline: 2px dotted #55d7dc; }
+}
+
+//=== Pen styling, ignore
+body { 
+  background: #1f1a25;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+    </style>
 </head>
 <body>
 
@@ -33,42 +112,42 @@
 		<div class="container" id="mood-row">
 			<div id="home-tiles" class="row">
 				<div class="col-md-2 col-sm-6 col-xs-12">
-					<a href="#">
+					<a  id='l'>
 						<div id="luv" class="sub-mood">
 							<span>In-Love</span>
 						</div>
 					</a>
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-12">
-					<a href="#">
+					<a id='m'>
 						<div id="motivational" class="sub-mood">
 							<span>Motivational</span>
 						</div>
 					</a>
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-12">
-					<a href="#"> 
+					<a id='p' > 
 						<div id="partayyy" class="sub-mood">
 							<span>Party</span>
 						</div>
 					</a>
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-12">
-					<a href="#"> 
+					<a id='s' > 
 						<div id="heart" class="sub-mood">
 							<span>Heartbreak</span>
 						</div>
 					</a>
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-12">
-					<a href="#"> 
+					<a id='c' > 
 						<div id="cam" class="sub-mood">
 							<span>Calm</span>
 						</div>
 					</a>
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-12">
-					<a href="#"> 
+					<a id='h'> 
 						<div id="hground" class="sub-mood">
 							<span>Higher Ground</span>
 						</div>
@@ -84,41 +163,7 @@
 
 	<section>
 		<div class="container" id="song-module">
-			<div  id="art">
-				<img class='section-3-image' src='"+a2+"'>
-			</div>       
-			<div >
-				<div id="song-name">
-					<p id='nm'>"+x+"</p>
-				</div> 
-				<div class='sec-3-b-2' id="artist">"+a1+"</div>
-						
-				<audio controls src="+s3+" id="audio-con"> Your browser does not support the 
-					<code>audio</code> 
-						element.    
-				</audio>
-			</div>
-			<div id="select">
-				<div>Which mood do you think the song fits to?</div>
-				<input type='radio' name='feed' value=1 class="inp">
-				Calm 
-				<br>
-				<input type='radio' name='feed' value=2 class="inp">
-				High Going
-				<br> 
-				<input type='radio' name='feed' value=3 class="inp">
-				Love
-				<br> 
-				<input type='radio' name='feed' value=4>
-				Motivational
-				<br> 
-				<input type='radio' name='feed' value=5>
-				Party
-				<br>
-				<input type='radio' name='feed' value=6>
-				Sad
-				<button type='button' id='fdd' onclick='feedback("+t+")'>Submit</button><br><div id='result'></div>
-			</div>
+			<h3>kindly click on any of the above mentioned moods to get the playlist :-)</h3>
 		</div>
 	</section>
 
@@ -140,6 +185,283 @@
 
 	<!----------------------------- jQuery (Bootstrap JS plugins depend on it) ------------------------------------>
 
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDnhmnCuiMbSISYuu-C4sg2aegn04aVhoY",
+    authDomain: "music-b142e.firebaseapp.com",
+    databaseURL: "https://music-b142e.firebaseio.com",
+    projectId: "music-b142e",
+    storageBucket: "music-b142e.appspot.com",
+    messagingSenderId: "82199964294",
+    appId: "1:82199964294:web:a3c713eaf5cb2779467f07"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+document.getElementById('h').onclick = function()
+{
+ var ref = firebase.database().ref('songs');
+ref.on('value',getDataF); 
+}
+document.getElementById('l').onclick = function()
+{
+ var ref = firebase.database().ref('songs');
+ref.on('value',getDataA); 
+}
+document.getElementById('m').onclick = function()
+{
+ var ref = firebase.database().ref('songs');
+ref.on('value',getDataB); 
+}
+document.getElementById('p').onclick = function()
+{
+ var ref = firebase.database().ref('songs');
+ref.on('value',getDataC); 
+}
+document.getElementById('s').onclick = function()
+{
+ var ref = firebase.database().ref('songs');
+ref.on('value',getDataD); 
+}
+document.getElementById('c').onclick = function()
+{
+ var ref = firebase.database().ref('songs');
+ref.on('value',getDataE); 
+}
+function getDataA(data)
+{
+	document.getElementById('song-module').innerHTML ='';
+  //console.log(data.val());
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  console.log(keys);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(c == mx)
+    {
+      document.getElementById('song-module').innerHTML += "<div  id='art'><img class='section-3-image' wisth=146 height=146 src="+a2+"></div><div><div id='song-name'><p id='nm'>"+nme+"</p></div><div class='sec-3-b-2' id='artist'>"+a1+"</div><audio controls src="+s3+" id='audio-con'> Your browser does not support the<code></code>element.</audio></div><div id='select'><div>Which mood do you think the song fits to?</div><input type='radio' name='feed' value=1 class='inp'>Calm<br><input type='radio' name='feed' value=2 class='inp'>Higher Ground<br><input type='radio' name='feed' value=3 class='inp'>	In-Love<br><input type='radio' name='feed' value=4>Motivational<br><input type='radio' name='feed' value=5>Party<br><input type='radio' name='feed' value=6>Heartbreak<button type='button' id='fdd' onclick=feedback("+x+") class='btn draw-borde' '>Submit</button><br><div id='result'></div></div>";
+    }  
+    
+  }
+}
+function getDataB(data)
+{
+	document.getElementById('song-module').innerHTML ='';
+  //console.log(data.val());
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  console.log(keys);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(d == mx)
+    {
+      document.getElementById('song-module').innerHTML += "<div  id='art'><img class='section-3-image' wisth=146 height=146 src="+a2+"></div><div><div id='song-name'><p id='nm'>"+nme+"</p></div><div class='sec-3-b-2' id='artist'>"+a1+"</div><audio controls src="+s3+" id='audio-con'> Your browser does not support the<code></code>element.</audio></div><div id='select'><div>Which mood do you think the song fits to?</div><input type='radio' name='feed' value=1 class='inp'>Calm<br><input type='radio' name='feed' value=2 class='inp'>Higher Ground<br><input type='radio' name='feed' value=3 class='inp'>	In-Love<br><input type='radio' name='feed' value=4>Motivational<br><input type='radio' name='feed' value=5>Party<br><input type='radio' name='feed' value=6>Heartbroken<button type='button' id='fdd' onclick=feedback("+x+") class='btn draw-borde' '>Submit</button><br><div id='result'></div></div>";
+    }  
+    
+  }
+}
+function getDataC(data)
+{
+	document.getElementById('song-module').innerHTML ='';
+  //console.log(data.val());
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  console.log(keys);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(e == mx)
+    {
+      document.getElementById('song-module').innerHTML += "<div  id='art'><img class='section-3-image' wisth=146 height=146 src="+a2+"></div><div><div id='song-name'><p id='nm'>"+nme+"</p></div><div class='sec-3-b-2' id='artist'>"+a1+"</div><audio controls src="+s3+" id='audio-con'> Your browser does not support the<code></code>element.</audio></div><div id='select'><div>Which mood do you think the song fits to?</div><input type='radio' name='feed' value=1 class='inp'>Calm<br><input type='radio' name='feed' value=2 class='inp'>Higher Ground<br><input type='radio' name='feed' value=3 class='inp'>	In-Love<br><input type='radio' name='feed' value=4>Motivational<br><input type='radio' name='feed' value=5>Party<br><input type='radio' name='feed' value=6>Heartbroken<button type='button' id='fdd' onclick=feedback("+x+") class='btn draw-borde' '>Submit</button><br><div id='result'></div></div>";
+    }  
+    
+  }
+}
+function getDataD(data)
+{
+	document.getElementById('song-module').innerHTML ='';
+  //console.log(data.val());
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  console.log(keys);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(f == mx)
+    {
+      document.getElementById('song-module').innerHTML += "<div  id='art'><img class='section-3-image' wisth=146 height=146 src="+a2+"></div><div><div id='song-name'><p id='nm'>"+nme+"</p></div><div class='sec-3-b-2' id='artist'>"+a1+"</div><audio controls src="+s3+" id='audio-con'> Your browser does not support the<code></code>element.</audio></div><div id='select'><div>Which mood do you think the song fits to?</div><input type='radio' name='feed' value=1 class='inp'>Calm<br><input type='radio' name='feed' value=2 class='inp'>Higher Ground<br><input type='radio' name='feed' value=3 class='inp'>	In-Love<br><input type='radio' name='feed' value=4>Motivational<br><input type='radio' name='feed' value=5>Party<br><input type='radio' name='feed' value=6>Heartbroken<button type='button' id='fdd' onclick=feedback("+x+") class='btn draw-borde' '>Submit</button><br><div id='result'></div></div>";
+    }  
+    
+  }
+}
+function getDataE(data)
+{
+	document.getElementById('song-module').innerHTML ='';
+  //console.log(data.val());
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  console.log(keys);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(a == mx)
+    {
+      document.getElementById('song-module').innerHTML += "<div  id='art'><img class='section-3-image' wisth=146 height=146 src="+a2+"></div><div><div id='song-name'><p id='nm'>"+nme+"</p></div><div class='sec-3-b-2' id='artist'>"+a1+"</div><audio controls src="+s3+" id='audio-con'> Your browser does not support the<code></code>element.</audio></div><div id='select'><div>Which mood do you think the song fits to?</div><input type='radio' name='feed' value=1 class='inp'>Calm<br><input type='radio' name='feed' value=2 class='inp'>Higher Ground<br><input type='radio' name='feed' value=3 class='inp'>	In-Love<br><input type='radio' name='feed' value=4>Motivational<br><input type='radio' name='feed' value=5>Party<br><input type='radio' name='feed' value=6>Heartbroken<button type='button' id='fdd' onclick=feedback("+x+") class='btn draw-borde' '>Submit</button><br><div id='result'></div></div>";
+    }  
+    
+  }
+}
+
+function getDataF(data)
+{
+	document.getElementById('song-module').innerHTML ='';
+  //console.log(data.val());
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  console.log(keys);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(b == mx)
+    {
+      document.getElementById('song-module').innerHTML += "<div  id='art'><img class='section-3-image' wisth=146 height=146 src="+a2+"></div><div><div id='song-name'><p id='nm'>"+nme+"</p></div><div class='sec-3-b-2' id='artist'>"+a1+"</div><audio controls src="+s3+" id='audio-con'> Your browser does not support the<code></code>element.</audio></div><div id='select'><div>Which mood do you think the song fits to?</div><input type='radio' name='feed' value=1 class='inp'>Calm<br><input type='radio' name='feed' value=2 class='inp'>Higher Ground<br><input type='radio' name='feed' value=3 class='inp'>	In-Love<br><input type='radio' name='feed' value=4>Motivational<br><input type='radio' name='feed' value=5>Party<br><input type='radio' name='feed' value=6>Heartbroken<button type='button' id='fdd' onclick=feedback("+x+") class='btn draw-borde' '>Submit</button><br><div id='result'></div></div>";
+    }  
+    
+  }
+}
+function feedback(x)
+{ 
+  var ele = document.getElementsByName('feed'); 
+              
+              xy=x;
+            for(i = 0; i < ele.length; i++) { 
+                if(ele[i].checked) 
+                t = ele[i].value;}
+        var ref = firebase.database().ref('songs');
+ref.on('value',getData);
+ }
+ function getData(data)
+{
+  var ar = data.val();
+  var keys = Object.keys(ar);
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var x = keys[i];
+    var a = ar[x].calm;
+    var b = ar[x].hg;
+    var c = ar[x].love;
+    var d = ar[x].moti;
+    var e = ar[x].party;
+    var f = ar[x].sad;
+    var a1 = ar[x].Artist;
+    var a2 = ar[x].img;
+    var s3 = ar[x].link;
+    var nme = ar[x].Name;
+    var mx = Math.max(a,b,c,d,e,f);
+    if(x == xy)
+    {
+      console.log(a,b,c,d,e,f);
+      if (t==1) 
+        {
+          a=parseInt(a)+1;
+         console.log(a);
+       }
+       if (t==2) 
+        {
+          b=parseInt(b)+1;
+         console.log(a);
+       }
+       if (t==3) 
+        {
+          c=parseInt(c)+1;
+         console.log(a);
+       }
+       if (t==4) 
+        {
+          d=parseInt(d)+1;
+         console.log(a);
+       }
+       if (t==5) 
+        {
+          e=parseInt(f)+1;
+         console.log(a);
+       }
+       if (t==6) 
+        {
+          f=parseInt(f)+1;
+         console.log(a);
+       }
+    }  
+    
+  }
+}
+</script>
   	<script src="js/jquery-2.1.4.min.js"></script>
   	<script src="js/bootstrap.min.js"></script>
   	<script src="js/script.js"></script>
