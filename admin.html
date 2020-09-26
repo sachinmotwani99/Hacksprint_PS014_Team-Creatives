@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Songs</title>
+  <style type="text/css">
+      input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+    input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+  </style>
+</head>
+<body>
+    <h2 align="center">Adding songs to Rhimjihm</h2>
+    <form class='form-class-5'>
+  Song ID:<input type="text" id="id"><br><br>
+  Namee:<input type="text" id="name"><br><br>
+  Artist:<input type="text" id="ar"><br><br>
+  Link of the songs(prefreably uploaded on cloudflare):<input type="text" id="link"><br><br>
+  imagelink:<input type="text" id="img"><br><br>
+  <h4>Now given below are 6 moods, input 1 if the songs suites the mood or else input 0</h4><br>
+  Calm:<input type="number" min="0" max ="1" id="c"><br><br>
+  Higher Ground:<input type="number" min="0" max ="1" id="h"><br><br>
+  In-Love:<input type="number" min="0" max ="1" id="l"><br><br>
+  Motivational:<input type="number" min="0" max ="1" id="m"><br><br>
+  Party:<input type="number" min="0" max ="1" id="p"><br><br>
+  Heartbreak:<input type="number" min="0" max ="1" id="s"><br><br>
+</form>
+  <button class="button" id="insert"><span>INSERT</span></button>
+  
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+    
+  var firebaseConfig = {
+    apiKey: "AIzaSyDnhmnCuiMbSISYuu-C4sg2aegn04aVhoY",
+    authDomain: "music-b142e.firebaseapp.com",
+    databaseURL: "https://music-b142e.firebaseio.com",
+    projectId: "music-b142e",
+    storageBucket: "music-b142e.appspot.com",
+    messagingSenderId: "82199964294",
+    appId: "1:82199964294:web:a3c713eaf5cb2779467f07"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var n,i,a,b,c,d,e,f,ar,l,p;
+function ready()
+{
+  i = document.getElementById('id').value;
+  n = document.getElementById('name').value;
+  ar = document.getElementById('ar').value;
+  l = document.getElementById('link').value;
+  p = document.getElementById('img').value;
+  a = document.getElementById('c').value;
+  b = document.getElementById('h').value;
+  c = document.getElementById('l').value;
+  d = document.getElementById('m').value;
+  e = document.getElementById('p').value;
+  f = document.getElementById('s').value;
+}
+document.getElementById('insert').onclick = function(){
+    ready();
+    firebase.database().ref('songs/'+i).set({
+        Name:n,id:i,Artist:ar,link:l,img:p,calm:a,hg:b,love:c,moti:d,party:e,sad:f
+
+    });
+ }
+</script>
+</body>
+</html>
